@@ -1,0 +1,281 @@
+/* cosmic_styles.css - Custom styles for the Cosmic Explorer website */
+
+:root {
+    --color-primary-deepspace: #0A1931; /* Deep Space Blue/Black */
+    --color-primary-purpledark: #2D243D; /* Dark Purple */
+    --color-accent-electricblue: #00A9FF;
+    --color-accent-magenta: #F000FF;
+    --color-text-light: #E0E0E0; /* Silver/White */
+    --color-text-muted: #A0A0A0;
+    --color-panel-bg: rgba(15, 25, 40, 0.75); /* Semi-transparent dark panel */
+    --color-panel-border: var(--color-accent-electricblue);
+
+    --font-family-headings: 'Orbitron', 'Impact', 'Arial Black', sans-serif; /* Example futuristic font stack */
+    --font-family-body: 'Roboto', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Import Orbitron and Roboto from Google Fonts (optional, but good for theme) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+body {
+    background-color: var(--color-primary-deepspace);
+    color: var(--color-text-light);
+    font-family: var(--font-family-body);
+    line-height: 1.6;
+    margin: 0; /* Ensure no default margins */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    color: var(--color-accent-electricblue); /* Default heading color */
+    margin-bottom: 0.75em;
+}
+
+a {
+    color: var(--color-accent-magenta);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-text-light);
+}
+
+/* Utility class for HUD-like borders (can be expanded) */
+.hud-border {
+    border: 1px solid var(--color-panel-border);
+    box-shadow: 0 0 5px rgba(0, 169, 255, 0.3), inset 0 0 3px rgba(0, 169, 255, 0.2);
+}
+
+#hero-section {
+    position: relative; /* For potential pseudo-elements or absolute positioned children */
+    /* min-h-screen flex flex-col justify-center items-center; /* From HTML */
+    background-image: url('https://via.placeholder.com/1920x1080/0A1931/000000?text=Deep+Cosmic+Expanse'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates a simple parallax-like effect for the background */
+    text-align: center; /* Ensures text is centered if flex properties were removed/changed */
+}
+
+#hero-section::before { /* Optional: Subtle vignette or overlay */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(10, 25, 49, 0.1) 0%, rgba(10, 25, 49, 0.7) 80%, var(--color-primary-deepspace) 100%);
+    z-index: 1; /* Below text content (which should have z-index > 1 or be in a higher z-index container) */
+}
+
+/* Ensure content within hero is above the overlay */
+#hero-section > div { /* Targeting the div wrapper for content */
+    position: relative;
+    z-index: 2;
+}
+
+
+#hero-section h1 {
+    /* text-5xl md:text-7xl font-bold mb-6; /* From HTML */
+    /* color is var(--color-accent-electricblue) by default from global h1 style */
+}
+
+#hero-section p {
+    /* text-xl md:text-2xl mb-8 max-w-2xl mx-auto; /* From HTML */
+    /* color: var(--color-text-muted); /* From HTML inline style, but good to reinforce here if needed */
+}
+
+/* Styling for the hero button, complementing Tailwind and inline styles */
+#hero-section a {
+    /* Uses .hud-border from global styles */
+    /* Specific hover effects are inline for now, can be moved to CSS class later */
+    /* background-color, color, border-color set inline for specificity */
+}
+
+#starmap-navigator-container {
+    /* sticky top-0 z-50; /* From HTML */
+    background-color: rgba(10, 25, 49, 0.85); /* Slightly more opaque version of panel bg */
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--color-accent-electricblue, #00A9FF); /* Fallback color */
+}
+
+#starmap-nav { /* Inner wrapper for the links */
+    /* flex justify-center items-center py-3; /* From HTML */
+}
+
+.starmap-nav-link {
+    font-family: var(--font-family-headings);
+    color: var(--color-accent-electricblue, #00A9FF);
+    /* text-sm uppercase tracking-wider; /* From HTML */
+    /* border: 1px solid var(--color-panel-border); /* From .hud-border */
+    border-radius: 4px; /* Soften edges of hud-border */
+    transition: all 0.3s ease-in-out;
+    position: relative; /* For pseudo-elements if needed later */
+}
+
+.starmap-nav-link:hover {
+    background-color: rgba(0, 169, 255, 0.2); /* var(--color-accent-electricblue) with alpha */
+    color: var(--color-text-light, #E0E0E0);
+    box-shadow: 0 0 10px rgba(0, 169, 255, 0.4);
+    transform: translateY(-1px);
+}
+
+.starmap-nav-link.active { /* JavaScript will toggle this class */
+    background-color: rgba(0, 169, 255, 0.3);
+    color: #FFFFFF; /* Bright white for active */
+    box-shadow: 0 0 15px rgba(0, 169, 255, 0.6), inset 0 0 5px rgba(0, 169, 255, 0.2);
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Parallax Layer Styling */
+.parallax-layer {
+    position: fixed; /* Fixed position to stay in viewport during scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Cover full viewport height */
+    background-size: cover;
+    background-position: center center;
+    /* background-attachment: fixed; /* Not needed if JS handles transform, can conflict */
+}
+
+#parallax-layer-far {
+    background-image: url('https://via.placeholder.com/1920x1080/0A1931/000000?text=Deep+Space+Background'); /* Darkest, most distant */
+    z-index: -30; /* Furthest back */
+}
+
+#parallax-layer-mid {
+    background-image: url('https://via.placeholder.com/1920x1080/00000000/2D243D?text=Mid-Ground+Nebula'); /* Transparent PNG or semi-transparent effect */
+    /* Example: if not a transparent PNG, use opacity: 0.6; */
+    z-index: -20;
+}
+
+#parallax-layer-near {
+    background-image: url('https://via.placeholder.com/1920x1080/00000000/00A9FF?text=Near+Star+Clusters'); /* Transparent PNG or subtle elements */
+    /* Example: if not a transparent PNG, use opacity: 0.4; */
+    z-index: -10;
+}
+
+/* Ensure main content areas are above parallax layers */
+/* The existing structural elements: header, nav, main, footer */
+#hero-section,
+#starmap-navigator-container,
+#main-content-area,
+#page-footer {
+    position: relative; /* Needed for z-index to apply if not already positioned */
+    z-index: 1; /* Or any value higher than parallax layers */
+}
+
+/* Adjust body if parallax layers cause unexpected overflow or scrollbars */
+/* body { overflow-x: hidden; } /* If necessary */
+
+.content-module {
+    /* p-6 rounded-md hud-border; /* Applied via Tailwind classes in HTML */
+    /* The .hud-border class already provides:
+       border: 1px solid var(--color-panel-border);
+       box-shadow: 0 0 5px rgba(0, 169, 255, 0.3), inset 0 0 3px rgba(0, 169, 255, 0.2);
+    */
+    background-color: var(--color-panel-bg, rgba(15, 25, 40, 0.75)); /* Default fallback */
+    backdrop-filter: blur(5px); /* Frosted glass effect */
+    margin-bottom: 2rem; /* Space between modules if ever stacked (though JS hides others) */
+    /* Consider adding transition for opacity/transform if modules will be animated in/out */
+    /* This was planned for a later step, but good to note connection. */
+}
+
+/* Specific styling for headings within modules, if needed beyond global h2/h3 */
+.content-module h2 {
+    /* text-3xl font-bold mb-4; /* From HTML Tailwind */
+    /* color: var(--color-accent-electricblue); /* From global h2 style */
+    border-bottom: 1px solid rgba(0, 169, 255, 0.2); /* Subtle separator for module title */
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem; /* Adjust from Tailwind's mb-4 if needed */
+}
+
+.content-module h3 {
+    /* text-xl font-semibold; /* From HTML Tailwind */
+    /* color: var(--color-accent-magenta); /* Some are styled inline like this */
+    /* If we want all H3 in modules to be magenta by default: */
+    /* color: var(--color-accent-magenta); */
+}
+
+.content-module p {
+    /* text-lg or text-sm; /* From HTML Tailwind */
+    color: var(--color-text-light, #E0E0E0); /* Ensure default p color is light */
+    line-height: 1.7; /* Slightly more spacing for readability in panels */
+}
+
+.content-module ul {
+    /* list-disc list-inside space-y-2; /* From HTML Tailwind */
+    color: var(--color-text-light, #E0E0E0);
+}
+.content-module ul li span { /* For colored spans in lists, like ship systems */
+    font-weight: bold;
+    /* Color is applied inline in HTML, e.g. style="color: var(--color-accent-electricblue);" */
+}
+
+/* Styling for the button within Ship Systems module */
+#ship-systems-module button {
+    /* mt-4 px-4 py-2 text-sm hud-border rounded-md; /* From HTML */
+    /* background-color: rgba(0,169,255,0.2); /* From HTML inline */
+    /* color: var(--color-accent-electricblue); /* From HTML inline */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#ship-systems-module button:hover {
+    background-color: rgba(0, 169, 255, 0.4) !important; /* Override inline if needed */
+    box-shadow: 0 0 10px rgba(0, 169, 255, 0.5);
+}
+
+/* Content Module Transitions */
+.content-module {
+    /* ... existing styles like background, padding, etc. ... */
+    opacity: 0;
+    transform: translateY(20px); /* Start slightly offset */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    /* Ensure hidden is handled correctly by JS. If .hidden sets display:none, this won't animate. */
+    /* JS needs to remove .hidden, then add a .visible class for animation. */
+}
+
+.content-module.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Hero Section Entry Animations */
+#hero-section h1, #hero-section p, #hero-section a {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0; /* Initial state for animation */
+}
+#hero-section p { animation-delay: 0.2s; }
+#hero-section a { animation-delay: 0.4s; }
+
+/* Starmap Navigator Entry Animation */
+#starmap-navigator-container { /* The sticky container */
+    animation: slideInDown 0.6s ease-out forwards;
+    opacity: 0; /* Initial state for animation */
+    transform: translateY(-100%);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#page-footer {
+    /* py-8 text-center text-sm text-gray-400; /* From HTML Tailwind */
+    border-top: 1px solid var(--color-panel-border, #00A9FF); /* Thematic top border */
+    background-color: rgba(10, 25, 49, 0.5); /* Subtle background, consistent with nav/panels */
+    /* Ensure it's above parallax if layers are very aggressive, though z-index:1 on footer should be enough */
+}
+
+#page-footer p {
+    margin-bottom: 0.25rem; /* Reduced margin for tighter footer lines */
+    /* color: var(--color-text-muted); /* text-gray-400 in HTML handles this */
+}
+
+@keyframes slideInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

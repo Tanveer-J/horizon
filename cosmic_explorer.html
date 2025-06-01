@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="cosmic_styles.css">
+</head>
+<body class="text-gray-100"> <!-- Removed bg-gray-900, will be handled by CSS -->
+    <div id="parallax-layer-far" class="parallax-layer"></div>
+    <div id="parallax-layer-mid" class="parallax-layer"></div>
+    <div id="parallax-layer-near" class="parallax-layer"></div>
+
+    <header id="hero-section" class="min-h-screen flex flex-col justify-center items-center">
+        <div class="text-center z-10 p-4"> <!-- z-10 to ensure text is above potential background elements if not handled by flex order -->
+            <h1 class="text-5xl md:text-7xl font-bold mb-6" style="text-shadow: 0 0 10px rgba(0, 169, 255, 0.5), 0 0 20px rgba(0, 169, 255, 0.3);">
+                Project: ODYSSEY GATE
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" style="color: var(--color-text-muted);">
+                Venture into the unknown. Discover digital worlds beyond the event horizon of imagination.
+            </p>
+            <a href="#starmap-navigator-container"
+               class="inline-block px-8 py-3 text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hud-border"
+               style="background-color: rgba(0, 169, 255, 0.1); color: var(--color-accent-electricblue); border-color: var(--color-accent-electricblue);"
+               onmouseover="this.style.backgroundColor='rgba(0, 169, 255, 0.3)'; this.style.boxShadow='0 0 15px rgba(0, 169, 255, 0.5)';"
+               onmouseout="this.style.backgroundColor='rgba(0, 169, 255, 0.1)'; this.style.boxShadow='none';">
+                ACCESS STARMAP
+            </a>
+        </div>
+    </header>
+
+    <nav id="starmap-navigator-container" class="sticky top-0 z-50">
+        <div id="starmap-nav" class="flex justify-center items-center py-3">
+            <a href="#mission-logs-module" class="starmap-nav-link hud-border mx-2 px-4 py-2 text-sm uppercase tracking-wider">Mission Logs</a>
+            <a href="#ship-systems-module" class="starmap-nav-link hud-border mx-2 px-4 py-2 text-sm uppercase tracking-wider">Ship Systems</a>
+            <a href="#galactic-atlas-module" class="starmap-nav-link hud-border mx-2 px-4 py-2 text-sm uppercase tracking-wider">Galactic Atlas</a>
+        </div>
+    </nav>
+
+    <main id="main-content-area" class="container mx-auto py-8 px-4">
+        <!-- Default/Welcome Module -->
+        <div id="welcome-module" class="content-module p-6 rounded-md hud-border">
+            <h2 class="text-3xl font-bold mb-4">Welcome, Explorer!</h2>
+            <p class="text-lg">Access restricted databanks and mission logs via the Starmap Navigator above. Your journey into the digital cosmos begins now.</p>
+            <p class="mt-4 text-sm text-gray-400">Select a destination to proceed.</p>
+        </div>
+
+        <!-- Mission Logs Module (Initially Hidden) -->
+        <div id="mission-logs-module" class="content-module hidden p-6 rounded-md hud-border">
+            <h2 class="text-3xl font-bold mb-4">Mission Logs</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-xl font-semibold" style="color: var(--color-accent-magenta);">Log Entry: Sol Sector - Anomaly 734</h3>
+                    <p class="text-sm text-gray-400">Date: Stardate 58207.3</p>
+                    <p>Investigating subspace distortions near Io. Readings inconclusive, further scans required. Possible cloaked vessel or natural phenomenon.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold" style="color: var(--color-accent-magenta);">Log Entry: Kepler-186f - First Contact Protocol</h3>
+                    <p class="text-sm text-gray-400">Date: Stardate 58211.9</p>
+                    <p>Positive identification of artificial signals. First contact protocol initiated. Team awaiting further instructions from Starfleet Command.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ship Systems Module (Initially Hidden) -->
+        <div id="ship-systems-module" class="content-module hidden p-6 rounded-md hud-border">
+            <h2 class="text-3xl font-bold mb-4">Starship Systems Status</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Warp Core Efficiency: <span style="color: var(--color-accent-electricblue);">98.7%</span> (Nominal)</li>
+                <li>Shield Integrity: <span style="color: var(--color-accent-electricblue);">100%</span> (Online, Fore & Aft)</li>
+                <li>Sensor Array: <span style="color: var(--color-accent-magenta);">Offline</span> (Sector Gamma - Undergoing recalibration)</li>
+                <li>Life Support: <span style="color: var(--color-accent-electricblue);">Stable</span> (Oxygen levels optimal)</li>
+            </ul>
+            <button class="mt-4 px-4 py-2 text-sm hud-border rounded-md" style="background-color: rgba(0,169,255,0.2); color: var(--color-accent-electricblue);">Run Diagnostics</button>
+        </div>
+
+        <!-- Galactic Atlas Module (Initially Hidden) -->
+        <div id="galactic-atlas-module" class="content-module hidden p-6 rounded-md hud-border">
+            <h2 class="text-3xl font-bold mb-4">Galactic Atlas Access</h2>
+            <p>Displaying data for Sector 001 (Local Cluster). Further regions locked pending command authorization.</p>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-3 rounded hud-border" style="background-color: rgba(255,255,255,0.05);">
+                    <h4 class="text-lg font-semibold" style="color: var(--color-accent-magenta);">Terra Nova Colony</h4>
+                    <p class="text-sm">Population: 1.2 Million. Status: Thriving. Primary Export: Duranium Ore.</p>
+                </div>
+                <div class="p-3 rounded hud-border" style="background-color: rgba(255,255,255,0.05);">
+                    <h4 class="text-lg font-semibold" style="color: var(--color-accent-magenta);">Xylos Nebula</h4>
+                    <p class="text-sm">Uncharted. High interference. Known hideout for Corsair fleets.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="page-footer" class="py-8 text-center text-sm text-gray-400">
+        <p>&copy; <span id="current-year"></span> Odyssey Gate Command. All systems nominal. Do not distribute beyond authorized channels.</p>
+        <p class="mt-2">Interface Version: CE-1.0.2</p>
+    </footer>
+
+    <script src="cosmic_scripts.js" defer></script>
+</body>
+</html>
