@@ -5,6 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Sections</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes subtle-breath {
+            0%, 100% { background-color: #EAE6F0; } /* Muted Lavender */
+            50% { background-color: #E0D8E8; }    /* Slightly different shade */
+        }
+        .animate-subtle-breath {
+            animation: subtle-breath 10s ease-in-out infinite;
+        }
+
+        /* Classes for entry animation - to be applied by JS if scroll-triggering is desired */
+        /* For now, these will just define the state, and transitions on elements will handle it on load */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.is-visible { /* JS would add .is-visible on scroll */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Simple load animation (no scroll trigger) */
+        .load-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        .load-fade-in-up-delay-1 { animation-delay: 0.2s; }
+        .load-fade-in-up-delay-2 { animation-delay: 0.4s; }
+        .load-fade-in-up-delay-3 { animation-delay: 0.6s; }
+        .load-fade-in-up-delay-4 { animation-delay: 0.8s; }
+
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-jules-lavender-deep { color: #5B4B8A; } /* For heading and affirmations */
+        .text-jules-lavender-muted { color: #79718A; } /* For introductory paragraph */
+    </style>
 </head>
 <body>
     <section id="energetic-content-section" class="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 text-white">
@@ -30,50 +72,114 @@
                 <p class="text-xl leading-relaxed">Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper. Ut lectus arcu bibendum at varius vel pharetra vel.</p>
             </div>
         </div>
-</section>
-<section id="focused-content-section" class="bg-sky-700 text-white">
-    <div class="container mx-auto px-4 py-20">
-        <h2 class="text-5xl font-bold text-center mb-16">Find Your Focus</h2>
-        <div class="flex justify-center items-center flex-wrap min-h-[50vh] relative mb-12">
-            <!-- Image 1 -->
-            <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 mb-4 sm:mb-0">
-                <img src="https://via.placeholder.com/350x300?text=Focus+Point+1" alt="Focused Image 1" class="rounded-md">
-            </div>
-            <!-- Image 2 -->
-            <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 transform scale-95">
-                <img src="https://via.placeholder.com/350x300?text=Focus+Point+2" alt="Focused Image 2" class="rounded-md">
-            </div>
-        </div>
-        <div class="max-w-3xl mx-auto text-center">
-            <h3 class="text-3xl font-semibold mb-6">Sharpen Your Mind</h3>
-            <p class="text-xl leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Tellus elementum sagittis vitae et leo duis ut diam.</p>
-            <p class="text-xl leading-relaxed">Amet justo donec enim diam vulputate ut pharetra sit. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Posuere ac ut consequat semper viverra nam libero justo laoreet.</p>
-        </div>
-    </div>
-</section>
-<section id="serene-content-section" class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
-    <div class="container mx-auto px-4 py-20">
-        <h2 class="text-4xl font-bold text-gray-700 text-center mb-12">Embrace Serenity</h2>
-        <div class="flex justify-center items-start flex-wrap min-h-[60vh] relative mb-12">
-            <!-- Image 1 -->
-            <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300 ease-in-out z-10 mb-4 md:mb-0 md:mr-[-50px]">
-                <img src="https://via.placeholder.com/300x400?text=Serene+View+1" alt="Serene Image 1" class="rounded-lg w-full h-auto block">
-            </div>
-            <!-- Image 2 -->
-            <div class="p-3 bg-white rounded-2xl shadow-lg transform rotate-2 hover:rotate-0 scale-105 hover:scale-110 transition-transform duration-300 ease-in-out z-20 mb-4 md:mb-0 md:ml-[-50px] md:mr-[-30px]">
-                <img src="https://via.placeholder.com/350x300?text=Serene+View+2" alt="Serene Image 2" class="rounded-lg w-full h-auto block">
-            </div>
-            <!-- Image 3 -->
-            <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300 ease-in-out z-0 md:ml-[-40px]">
-                <img src="https://via.placeholder.com/280x380?text=Serene+View+3" alt="Serene Image 3" class="rounded-lg w-full h-auto block">
-            </div>
-        </div>
-        <div class="max-w-2xl mx-auto mt-12 text-center">
-             <h3 class="text-2xl font-semibold text-gray-700 mb-6">Discover Your Inner Peace</h3>
-            <p class="text-lg text-gray-600 leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <p class="text-lg text-gray-600 leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </div>
     </section>
+    <section id="focused-content-section" class="bg-sky-700 text-white">
+        <div class="container mx-auto px-4 py-20">
+            <h2 class="text-5xl font-bold text-center mb-16">Find Your Focus</h2>
+            <div class="flex justify-center items-center flex-wrap min-h-[50vh] relative mb-12">
+                <!-- Image 1 -->
+                <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 mb-4 sm:mb-0">
+                    <img src="https://via.placeholder.com/350x300?text=Focus+Point+1" alt="Focused Image 1" class="rounded-md">
+                </div>
+                <!-- Image 2 -->
+                <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 transform scale-95">
+                    <img src="https://via.placeholder.com/350x300?text=Focus+Point+2" alt="Focused Image 2" class="rounded-md">
+                </div>
+            </div>
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-3xl font-semibold mb-6">Sharpen Your Mind</h3>
+                <p class="text-xl leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Tellus elementum sagittis vitae et leo duis ut diam.</p>
+                <p class="text-xl leading-relaxed">Amet justo donec enim diam vulputate ut pharetra sit. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Posuere ac ut consequat semper viverra nam libero justo laoreet.</p>
+            </div>
+        </div>
+    </section>
+    <section id="serene-content-section" class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
+        <div class="container mx-auto px-4 py-20">
+            <h2 class="text-4xl font-bold text-gray-700 text-center mb-12">Embrace Serenity</h2>
+            <div class="flex justify-center items-start flex-wrap min-h-[60vh] relative mb-12">
+                <!-- Image 1 -->
+                <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300 ease-in-out z-10 mb-4 md:mb-0 md:mr-[-50px]">
+                    <img src="https://via.placeholder.com/300x400?text=Serene+View+1" alt="Serene Image 1" class="rounded-lg w-full h-auto block">
+                </div>
+                <!-- Image 2 -->
+                <div class="p-3 bg-white rounded-2xl shadow-lg transform rotate-2 hover:rotate-0 scale-105 hover:scale-110 transition-transform duration-300 ease-in-out z-20 mb-4 md:mb-0 md:ml-[-50px] md:mr-[-30px]">
+                    <img src="https://via.placeholder.com/350x300?text=Serene+View+2" alt="Serene Image 2" class="rounded-lg w-full h-auto block">
+                </div>
+                <!-- Image 3 -->
+                <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300 ease-in-out z-0 md:ml-[-40px]">
+                    <img src="https://via.placeholder.com/280x380?text=Serene+View+3" alt="Serene Image 3" class="rounded-lg w-full h-auto block">
+                </div>
+            </div>
+            <div class="max-w-2xl mx-auto mt-12 text-center">
+                 <h3 class="text-2xl font-semibold text-gray-700 mb-6">Discover Your Inner Peace</h3>
+                <p class="text-lg text-gray-600 leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p class="text-lg text-gray-600 leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+    </section>
+    <section id="jules-soothing-sanctuary" class="bg-purple-100 py-20 px-4 overflow-hidden animate-subtle-breath" style="clip-path: ellipse(150% 80% at 50% 20%);">
+        <h2 class="text-4xl font-bold text-center mb-4 load-fade-in-up text-jules-lavender-deep">Step into Jules' Soothing Sanctuary</h2>
+        <p class="text-lg text-center mb-12 load-fade-in-up load-fade-in-up-delay-1 text-jules-lavender-muted">A quiet space to pause, breathe, and interact with gentle moments of calm. Let your curiosity guide you through the light.</p>
+        <div class="relative flex flex-wrap justify-start items-center min-h-[70vh] w-full lg:w-3/4 mx-auto">
+            <!-- Panel 1 -->
+            <div class="panel p-3 bg-white/70 backdrop-blur-md rounded-xl shadow-lg w-64 h-80 ml-4 md:ml-16 lg:ml-24 mb-8 mt-8 transform -rotate-6 transition-all duration-500 ease-in-out hover:scale-105 hover:rotate-0 z-10 load-fade-in-up load-fade-in-up-delay-2">
+                <img src="https://via.placeholder.com/240x300/EAE6F0/5B4B8A?text=Path+of+Tranquility" alt="Abstract representation of a tranquil path" class="rounded-lg w-full h-5/6 object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
+                <p class="affirmation text-sm text-center p-2 text-jules-lavender-deep">Your journey unfolds with grace.</p>
+            </div>
+            <!-- Panel 2 -->
+            <div class="panel p-3 bg-white/70 backdrop-blur-md rounded-xl shadow-lg w-64 h-80 mx-auto mb-8 md:-mt-12 transform rotate-4 transition-all duration-500 ease-in-out hover:scale-105 hover:rotate-0 z-20 scale-100 md:scale-105 load-fade-in-up load-fade-in-up-delay-3">
+                <img src="https://via.placeholder.com/240x300/FFDAB9/5B4B8A?text=Whispers+of+Stillness" alt="Abstract depiction of calm water reflections" class="rounded-lg w-full h-5/6 object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
+                <p class="affirmation text-sm text-center p-2 text-jules-lavender-deep">Listen to the silence within.</p>
+            </div>
+            <!-- Panel 3 -->
+            <div class="panel p-3 bg-white/70 backdrop-blur-md rounded-xl shadow-lg w-64 h-80 mr-4 md:mr-16 lg:mr-24 mb-8 md:mt-12 lg:mt-16 transform -rotate-2 transition-all duration-500 ease-in-out hover:scale-105 hover:rotate-0 z-10 scale-95 md:scale-100 load-fade-in-up load-fade-in-up-delay-4">
+                <img src="https://via.placeholder.com/240x300/B2C2B3/5B4B8A?text=Glimmer+of+Hope" alt="Soft focus image of gentle light" class="rounded-lg w-full h-5/6 object-cover grayscale hover:grayscale-0 transition-all duration-500 ease-in-out">
+                <p class="affirmation text-sm text-center p-2 text-jules-lavender-deep">A soft light always guides you.</p>
+            </div>
+        </div>
+    </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sanctuary = document.getElementById('jules-soothing-sanctuary');
+    if (!sanctuary) return;
+
+    sanctuary.addEventListener('mousemove', function(e) {
+        // Create a sparkle element
+        let sparkle = document.createElement('span');
+        sparkle.classList.add('sparkle'); // For potential future CSS targeting
+
+        // Position the sparkle at the cursor.
+        // offsetX/Y gives position relative to the target element.
+        let x = e.offsetX;
+        let y = e.offsetY;
+
+        // Style the sparkle
+        Object.assign(sparkle.style, {
+            position: 'absolute',
+            left: x + 'px',
+            top: y + 'px',
+            width: '8px',
+            height: '8px',
+            backgroundColor: '#FFDAB9', // Soft Peach
+            borderRadius: '50%',
+            pointerEvents: 'none', // So it doesn't interfere with other mouse events
+            opacity: '0.8',
+            transition: 'opacity 0.5s ease-out, transform 0.5s ease-out', // For fade out
+            transform: 'scale(1)' // Initial scale
+        });
+
+        this.appendChild(sparkle);
+
+        // Make the sparkle fade and shrink, then remove
+        setTimeout(() => {
+            sparkle.style.opacity = '0';
+            sparkle.style.transform = 'scale(0)';
+            setTimeout(() => {
+                sparkle.remove();
+            }, 500); // Remove after fade out transition
+        }, 500); // Start fading after 500ms
+    });
+});
+</script>
 </body>
 </html>
