@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoe Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="flex flex-wrap justify-center items-start min-h-screen bg-gray-100 gap-8 p-8">
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
+            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
+            <div>
+                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
+                <p class="text-lg text-gray-700 mb-4">$99.99</p>
+            </div>
+            <button id="nextProductBtn1" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
+            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
+            <div>
+                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
+                <p class="text-lg text-gray-700 mb-4">$99.99</p>
+            </div>
+            <button id="nextProductBtn2" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
+            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
+            <div>
+                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
+                <p class="text-lg text-gray-700 mb-4">$99.99</p>
+            </div>
+            <button id="nextProductBtn3" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+        </div>
+    </div>
+    <script>
+        // It's better to use classes for buttons that share functionality
+        // but for this step, we'll make them unique for now.
+        const nextProductButton1 = document.getElementById('nextProductBtn1');
+        if (nextProductButton1) {
+            nextProductButton1.addEventListener('click', () => {
+                confetti();
+            });
+        }
+
+        const nextProductButton2 = document.getElementById('nextProductBtn2');
+        if (nextProductButton2) {
+            nextProductButton2.addEventListener('click', () => {
+                confetti();
+            });
+        }
+
+        const nextProductButton3 = document.getElementById('nextProductBtn3');
+        if (nextProductButton3) {
+            nextProductButton3.addEventListener('click', () => {
+                confetti();
+            });
+        }
+    </script>
+</body>
+</html>
