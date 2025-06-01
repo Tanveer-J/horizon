@@ -3,62 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoe Cards</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <title>Content Sections</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="flex flex-wrap justify-center items-start min-h-screen bg-gray-100 gap-8 p-8">
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
-            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
-            <div>
-                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
-                <p class="text-lg text-gray-700 mb-4">$99.99</p>
+    <section id="energetic-content-section" class="bg-gradient-to-r from-orange-400 via-red-500 to-yellow-500 text-white">
+        <div class="container mx-auto px-4 py-20">
+            <h2 class="text-5xl font-bold text-center mb-16">Unleash Your Energy</h2>
+            <div class="flex justify-center items-center flex-wrap min-h-[50vh] relative mb-12">
+                <!-- Image 1 -->
+                <div class="p-2 bg-white rounded-xl shadow-2xl transform -rotate-6 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out z-10 mx-2 mb-4 sm:mb-0">
+                    <img src="https://via.placeholder.com/280x380?text=Energy+Boost+1" alt="Energetic Image 1" class="rounded-lg">
+                </div>
+                <!-- Image 2 -->
+                <div class="p-2 bg-white rounded-xl shadow-2xl transform rotate-3 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out z-20 mx-2 mb-4 sm:mb-0 scale-105">
+                    <img src="https://via.placeholder.com/320x380?text=Energy+Boost+2" alt="Energetic Image 2" class="rounded-lg">
+                </div>
+                <!-- Image 3 -->
+                <div class="p-2 bg-white rounded-xl shadow-2xl transform -rotate-4 hover:rotate-0 hover:scale-110 transition-transform duration-300 ease-in-out z-10 mx-2">
+                    <img src="https://via.placeholder.com/280x380?text=Energy+Boost+3" alt="Energetic Image 3" class="rounded-lg">
+                </div>
             </div>
-            <button id="nextProductBtn1" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+            <div class="max-w-3xl mx-auto text-center">
+                <h3 class="text-3xl font-semibold mb-6">Ignite Your Passion</h3>
+                <p class="text-xl leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc sed id semper risus in hendrerit gravida rutrum. Pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae.</p>
+                <p class="text-xl leading-relaxed">Velit euismod in pellentesque massa placerat duis ultricies lacus sed. Pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper. Ut lectus arcu bibendum at varius vel pharetra vel.</p>
+            </div>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
-            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
-            <div>
-                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
-                <p class="text-lg text-gray-700 mb-4">$99.99</p>
+</section>
+<section id="focused-content-section" class="bg-sky-700 text-white">
+    <div class="container mx-auto px-4 py-20">
+        <h2 class="text-5xl font-bold text-center mb-16">Find Your Focus</h2>
+        <div class="flex justify-center items-center flex-wrap min-h-[50vh] relative mb-12">
+            <!-- Image 1 -->
+            <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 mb-4 sm:mb-0">
+                <img src="https://via.placeholder.com/350x300?text=Focus+Point+1" alt="Focused Image 1" class="rounded-md">
             </div>
-            <button id="nextProductBtn2" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+            <!-- Image 2 -->
+            <div class="p-2 bg-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out z-10 mx-3 transform scale-95">
+                <img src="https://via.placeholder.com/350x300?text=Focus+Point+2" alt="Focused Image 2" class="rounded-md">
+            </div>
         </div>
-
-        <div class="bg-white p-6 rounded-lg shadow-xl max-w-sm">
-            <img src="https://via.placeholder.com/300x200?text=Shoe+Image" alt="Shoe Image" class="rounded-md mb-4">
-            <div>
-                <h2 class="text-2xl font-bold mb-2">Awesome Kicks</h2>
-                <p class="text-lg text-gray-700 mb-4">$99.99</p>
-            </div>
-            <button id="nextProductBtn3" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Next Product</button>
+        <div class="max-w-3xl mx-auto text-center">
+            <h3 class="text-3xl font-semibold mb-6">Sharpen Your Mind</h3>
+            <p class="text-xl leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi scelerisque eu. Tellus elementum sagittis vitae et leo duis ut diam.</p>
+            <p class="text-xl leading-relaxed">Amet justo donec enim diam vulputate ut pharetra sit. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue. Posuere ac ut consequat semper viverra nam libero justo laoreet.</p>
         </div>
     </div>
-    <script>
-        // It's better to use classes for buttons that share functionality
-        // but for this step, we'll make them unique for now.
-        const nextProductButton1 = document.getElementById('nextProductBtn1');
-        if (nextProductButton1) {
-            nextProductButton1.addEventListener('click', () => {
-                confetti();
-            });
-        }
-
-        const nextProductButton2 = document.getElementById('nextProductBtn2');
-        if (nextProductButton2) {
-            nextProductButton2.addEventListener('click', () => {
-                confetti();
-            });
-        }
-
-        const nextProductButton3 = document.getElementById('nextProductBtn3');
-        if (nextProductButton3) {
-            nextProductButton3.addEventListener('click', () => {
-                confetti();
-            });
-        }
-    </script>
+</section>
+<section id="serene-content-section" class="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100">
+    <div class="container mx-auto px-4 py-20">
+        <h2 class="text-4xl font-bold text-gray-700 text-center mb-12">Embrace Serenity</h2>
+        <div class="flex justify-center items-start flex-wrap min-h-[60vh] relative mb-12">
+            <!-- Image 1 -->
+            <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300 ease-in-out z-10 mb-4 md:mb-0 md:mr-[-50px]">
+                <img src="https://via.placeholder.com/300x400?text=Serene+View+1" alt="Serene Image 1" class="rounded-lg w-full h-auto block">
+            </div>
+            <!-- Image 2 -->
+            <div class="p-3 bg-white rounded-2xl shadow-lg transform rotate-2 hover:rotate-0 scale-105 hover:scale-110 transition-transform duration-300 ease-in-out z-20 mb-4 md:mb-0 md:ml-[-50px] md:mr-[-30px]">
+                <img src="https://via.placeholder.com/350x300?text=Serene+View+2" alt="Serene Image 2" class="rounded-lg w-full h-auto block">
+            </div>
+            <!-- Image 3 -->
+            <div class="p-3 bg-white rounded-2xl shadow-lg transform -rotate-1 hover:rotate-0 transition-transform duration-300 ease-in-out z-0 md:ml-[-40px]">
+                <img src="https://via.placeholder.com/280x380?text=Serene+View+3" alt="Serene Image 3" class="rounded-lg w-full h-auto block">
+            </div>
+        </div>
+        <div class="max-w-2xl mx-auto mt-12 text-center">
+             <h3 class="text-2xl font-semibold text-gray-700 mb-6">Discover Your Inner Peace</h3>
+            <p class="text-lg text-gray-600 leading-relaxed mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="text-lg text-gray-600 leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+    </div>
+    </section>
 </body>
 </html>
