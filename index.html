@@ -46,6 +46,119 @@
 
         .text-jules-lavender-deep { color: #5B4B8A; } /* For heading and affirmations */
         .text-jules-lavender-muted { color: #79718A; } /* For introductory paragraph */
+
+        .active-starmap-link { /* Overriding previous for more emphasis */
+            background-color: rgba(0, 169, 255, 0.4) !important; /* Electric blue with more opacity */
+            border-color: rgba(0, 169, 255, 0.9) !important;
+            box-shadow: 0 0 15px rgba(0, 169, 255, 0.8), inset 0 0 8px rgba(0,169,255,0.3) !important;
+            color: #E0E0E0 !important; /* Brighter text for active link */
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        #starmap-nav {
+            /* background-color: rgba(10, 25, 49, 0.8); /* Existing */
+            /* backdrop-filter: blur(5px); /* Existing */
+            border: 1px solid rgba(0, 169, 255, 0.3); /* Electric blue border */
+            border-radius: 10px; /* Slightly more pronounced rounding */
+            box-shadow: 0 0 15px rgba(0, 169, 255, 0.2), inset 0 0 5px rgba(0, 169, 255, 0.1); /* Outer and inner glow */
+            margin-top: 1rem; /* Add some space from top of section if needed */
+            /* padding: 0.5rem 1rem; /* Adjusted from p-4 for finer control */
+        }
+
+        .starmap-link {
+            /* color: #00A9FF; /* Existing */
+            /* padding: 0.5rem 0.75rem; /* Existing px-3 py-2 */
+            /* margin: 0 0.5rem; /* Existing mx-2 */
+            /* border-radius: 0.375rem; /* Existing rounded */
+            border: 1px solid transparent; /* Base border */
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 600; /* Semi-bold */
+            letter-spacing: 0.05em;
+            font-size: 0.9rem; /* Slightly smaller for a more 'console' feel */
+        }
+
+        .starmap-link:hover {
+            /* background-color: rgba(0, 169, 255, 0.3); /* Existing */
+            border-color: rgba(0, 169, 255, 0.7);
+            box-shadow: 0 0 10px rgba(0, 169, 255, 0.5);
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Content Subsection Reveal Animation */
+        .cosmic-subsection {
+            /* ... existing styles ... */
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(30px); /* Start slightly lower */
+        }
+        .cosmic-subsection.visible { /* Class to be added by JS */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Note: Tailwind's .hidden (display: none !important) will override this.
+           JS must remove .hidden AND add .visible. When hiding, add .hidden and remove .visible. */
+
+        /* Starmap Navigator Entry Animation (applied to .starmap-link) */
+        .starmap-link { /* Adding animation properties here */
+            /* ... existing styles ... */
+            opacity: 0;
+            transform: translateY(-10px);
+            animation: fadeInDownStarmapLink 0.5s ease-out forwards;
+        }
+        /* Stagger delays can be added with more classes or JS if needed */
+
+        @keyframes fadeInDownStarmapLink {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Parallax Cue Element */
+        .parallax-cue {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: rgba(0, 169, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 169, 255, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-out;
+            pointer-events: none; /* So it doesn't interfere */
+            z-index: 5;
+        }
+        .parallax-cue.active {
+            opacity: 1;
+        }
+
+        /* Starmap Navigator Background */
+        .starmap-nav-bg {
+            background-color: rgba(10, 25, 49, 0.8); /* Deep space blue, semi-transparent */
+            backdrop-filter: blur(5px);
+        }
+
+        /* Starmap Link Base Text Color */
+        .starmap-link-text-color {
+            color: #00A9FF; /* Electric blue */
+        }
+
+        /* Cosmic Subsection Styling */
+        .cosmic-subsection-panel {
+            background-color: rgba(45, 36, 61, 0.7); /* Dark purple, semi-transparent */
+            backdrop-filter: blur(5px);
+            border: 1px solid #00A9FF; /* Electric blue border */
+        }
+
+        /* Subsection Heading Color */
+        .cosmic-subsection-h3-text-color {
+            color: #00A9FF; /* Electric blue */
+        }
+
+        /* Default Content Heading Color */
+        .cosmic-default-h2-text-color {
+            color: #E0E0E0; /* Light silver/white */
+        }
     </style>
 </head>
 <body>
@@ -179,7 +292,117 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500); // Remove after fade out transition
         }, 500); // Start fading after 500ms
     });
+
+    // --- Parallax Effect ---
+    const parallaxFar = document.getElementById('parallax-bg-far');
+    const parallaxMid = document.getElementById('parallax-bg-mid');
+    const parallaxNear = document.getElementById('parallax-bg-near');
+
+    // Ensure elements exist before adding scroll listener
+    if (parallaxFar && parallaxMid && parallaxNear) {
+        window.addEventListener('scroll', () => {
+            let scrollOffset = window.pageYOffset;
+            // Adjust these factors to control speed; smaller factor = slower movement
+            // Ensure the section itself is in view for performance, but for now, apply globally
+            parallaxFar.style.transform = `translateY(${scrollOffset * 0.1}px)`;
+            parallaxMid.style.transform = `translateY(${scrollOffset * 0.3}px)`;
+            parallaxNear.style.transform = `translateY(${scrollOffset * 0.5}px)`;
+            // Note: For true parallax relative to section scroll, calculations need to be more complex
+            // and consider the section's offsetTop. This is a simpler window-scroll parallax.
+        });
+    }
+
+    // --- Starmap Navigation Logic ---
+    const starmapLinks = document.querySelectorAll('#starmap-nav .starmap-link');
+    const contentSubsections = document.querySelectorAll('.cosmic-subsection');
+    const defaultCosmicContent = document.getElementById('default-cosmic-content');
+
+    // Ensure elements exist
+    if (starmapLinks.length > 0 && contentSubsections.length > 0 && defaultCosmicContent) {
+        starmapLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Stop default anchor behavior
+
+                // Hide all subsections and the default content, preparing for animation
+                contentSubsections.forEach(section => {
+                    section.classList.remove('visible'); // Remove visible first
+                    section.classList.add('hidden');    // Then add hidden
+                });
+                if (defaultCosmicContent) { // Check if defaultCosmicContent exists
+                    defaultCosmicContent.classList.remove('visible');
+                    defaultCosmicContent.classList.add('hidden');
+                }
+
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    targetSection.classList.remove('hidden'); // Remove hidden first
+                    // Force reflow/repaint before adding 'visible' to ensure transition plays
+                    void targetSection.offsetWidth; // Common trick for this
+                    targetSection.classList.add('visible');
+                }
+
+                // Optional: Active link styling
+                starmapLinks.forEach(navLink => navLink.classList.remove('active-starmap-link'));
+                this.classList.add('active-starmap-link');
+            });
+        });
+    }
+
+    // --- Parallax Cue Logic ---
+    const navHoverCue = document.getElementById('nav-hover-cue');
+
+    if (navHoverCue && starmapLinks.length > 0) {
+        starmapLinks.forEach((link, index) => {
+            link.addEventListener('mouseenter', () => {
+                // Example: Position cue differently for each link, or use fixed pos
+                // These coordinates are arbitrary for demonstration
+                const positions = [{top: '30%', left: '20%'}, {top: '40%', left: '50%'}, {top: '35%', left: '75%'}];
+                if (positions[index]) {
+                    navHoverCue.style.top = positions[index].top;
+                    navHoverCue.style.left = positions[index].left;
+                }
+                navHoverCue.classList.add('active');
+            });
+            link.addEventListener('mouseleave', () => {
+                navHoverCue.classList.remove('active');
+            });
+        });
+    }
 });
 </script>
+    <section id="cosmic-explorers-corner" class="relative bg-gray-900 text-gray-200 py-16 px-4 overflow-hidden min-h-screen">
+        <div id="parallax-bg-far" class="absolute inset-0 z-0" style="background-image: url('https://via.placeholder.com/1920x1080/0A1931/1A2941?text=Deep+Field+H-alpha'); background-size: cover; background-position: center;"></div>
+        <div id="parallax-bg-mid" class="absolute inset-0 z-1" style="background-image: url('https://via.placeholder.com/1920x1080/00000000/2D243D?text=Orion+Spur+Dust+Clouds'); background-size: cover; background-position: center; opacity: 0.7;"></div>
+        <div id="parallax-bg-near" class="absolute inset-0 z-2" style="background-image: url('https://via.placeholder.com/1920x1080/00000000/00A9FF?text=Local+Cluster+Glimmer'); background-size: cover; background-position: center; opacity: 0.5;"></div>
+        <div id="nav-hover-cue" class="parallax-cue"></div>
+
+        <nav id="starmap-nav" class="relative z-30 flex justify-center items-center p-4 mb-8 rounded-lg starmap-nav-bg">
+            <a href="#system-alpha-content" class="starmap-link mx-2 px-3 py-2 rounded hover:bg-blue-500/30 starmap-link-text-color">System Alpha</a>
+            <a href="#nebula-x-content" class="starmap-link mx-2 px-3 py-2 rounded hover:bg-blue-500/30 starmap-link-text-color">Nebula X</a>
+            <a href="#galaxy-prime-content" class="starmap-link mx-2 px-3 py-2 rounded hover:bg-blue-500/30 starmap-link-text-color">Galaxy Prime</a>
+        </nav>
+
+        <div id="cosmic-content-area" class="relative z-20 container mx-auto">
+            <div id="system-alpha-content" class="cosmic-subsection p-6 rounded-lg mb-8 hidden cosmic-subsection-panel">
+                <h3 class="text-2xl font-bold mb-3 cosmic-subsection-h3-text-color">Log Entry: System Alpha</h3>
+                <p>Initial scans indicate three terrestrial planets and a gas giant. Further analysis required for atmospheric composition. Anomalous energy readings detected near the asteroid belt.</p>
+            </div>
+            <div id="nebula-x-content" class="cosmic-subsection p-6 rounded-lg mb-8 hidden cosmic-subsection-panel">
+                <h3 class="text-2xl font-bold mb-3 cosmic-subsection-h3-text-color">Observation: Nebula X</h3>
+                <p>A vast stellar nursery, rich in hydrogen and helium. Young stars are forming within its vibrant clouds. Navigational hazards due to gravitational eddies are significant.</p>
+            </div>
+            <div id="galaxy-prime-content" class="cosmic-subsection p-6 rounded-lg mb-8 hidden cosmic-subsection-panel">
+                <h3 class="text-2xl font-bold mb-3 cosmic-subsection-h3-text-color">Report: Galaxy Prime Anomaly</h3>
+                <p>Unidentified signal pattern originating from the core of Galaxy Prime. The signal repeats in a complex sequence. Attempts to decrypt are ongoing. Caution advised.</p>
+            </div>
+            <!-- Default visible content -->
+            <div id="default-cosmic-content" class="cosmic-subsection p-6 rounded-lg cosmic-subsection-panel">
+                <h2 class="text-3xl font-bold text-center mb-4 cosmic-default-h2-text-color">Welcome to the Cosmic Explorer's Corner</h2>
+                <p class="text-center">Select a destination from the Starmap Navigator above to view mission logs and sensor data.</p>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
