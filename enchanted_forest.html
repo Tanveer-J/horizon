@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enchanted Forest Nook</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="enchanted_styles.css">
+</head>
+<body class="font-serif"> <!-- Base font family will be set in CSS -->
+
+    <header id="forest-hero-section" class="min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+        <div class="text-center p-4 z-10"> <!-- z-10 to ensure text is above potential ::before overlays -->
+            <h1 class="text-5xl md:text-6xl font-bold mb-6" style="color: var(--color-magic-softgold); text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+                The Whispering Glade Awaits
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-xl mx-auto" style="font-family: var(--font-family-script); color: var(--color-earth-mossgreen); font-size: 1.8rem;">
+                Where ancient trees share silent tales, and sunlight dances with unseen sprites...
+            </p>
+            <p class="text-md" style="color: var(--color-earth-text);">
+                Follow the winding paths below to uncover the secrets held within.
+            </p>
+
+            <div class="firefly-container absolute inset-0 pointer-events-none overflow-hidden">
+                <span class="firefly"></span>
+                <span class="firefly"></span>
+                <span class="firefly"></span>
+                <span class="firefly"></span>
+                <span class="firefly"></span>
+                <span class="firefly"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav id="forest-paths-nav-container" class="sticky top-0 z-40">
+        <div id="forest-paths-nav" class="flex justify-center items-center py-3">
+            <a href="#ancient-lore-module" class="forest-path-link mx-3 px-4 py-2 text-lg">Ancient Lore</a>
+            <a href="#mystical-creatures-module" class="forest-path-link mx-3 px-4 py-2 text-lg">Mystical Creatures</a>
+            <a href="#hidden-waterfalls-module" class="forest-path-link mx-3 px-4 py-2 text-lg">Hidden Waterfalls</a>
+        </div>
+    </nav>
+
+    <main id="forest-clearings-area" class="container mx-auto py-8 px-4 relative z-10">
+        <!-- Default/Welcome Clearing -->
+        <div id="welcome-clearing-module" class="forest-clearing-module p-6 md:p-8 mb-10 rounded-lg shadow-xl">
+            <h2 class="text-4xl font-bold mb-6 text-center" style="color: var(--color-earth-deepgreen);">Welcome to the Whispering Woods</h2>
+            <p class="text-lg mb-4" style="color: var(--color-earth-text);">Brave traveler, you stand at the threshold of an ancient forest, alive with untold secrets and subtle enchantments. The air hums with latent magic, and the trees themselves seem to watch with ageless wisdom.</p>
+            <p class="text-lg" style="color: var(--color-earth-text);">Choose a path from the ancient stones above to explore the hidden clearings within. Each holds a different story, a different mystery of the Enchanted Nook.</p>
+        </div>
+
+        <!-- Ancient Lore Module (Initially Hidden) -->
+        <div id="ancient-lore-module" class="forest-clearing-module hidden p-6 md:p-8 mb-10 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--color-earth-deepgreen);">Echoes of Ancient Lore</h2>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-2xl" style="font-family: var(--font-family-script); color: var(--color-earth-mossgreen);">The Ballad of the Sunken Moon</h3>
+                    <p class="text-sm text-gray-600" style="color: var(--color-earth-text); opacity: 0.8;">As transcribed by Elara Meadowlight</p>
+                    <p class="mt-2" style="color: var(--color-earth-text);">Long ago, when stars were but dreams in the night's embrace, the Moon, heavy with sorrow, wept itself into the Great Lake. Its tears became the shimmering pebbles that guide lost wanderers home...</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl" style="font-family: var(--font-family-script); color: var(--color-earth-mossgreen);">The Runes of Warding</h3>
+                    <p class="text-sm text-gray-600" style="color: var(--color-earth-text); opacity: 0.8;">From the Grimoire of Elder Thornwood</p>
+                    <p class="mt-2" style="color: var(--color-earth-text);">Five runes mark the boundaries, each a sentinel against the shadows that creep beyond the veil. Speak their names softly, and the forest grants passage; invoke them with ill intent, and its roots shall bind you...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mystical Creatures Module (Initially Hidden) -->
+        <div id="mystical-creatures-module" class="forest-clearing-module hidden p-6 md:p-8 mb-10 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--color-earth-deepgreen);">A Compendium of Mystical Creatures</h2>
+            <ul class="list-none space-y-6">
+                <li>
+                    <h4 class="text-xl font-semibold" style="color: var(--color-earth-mossgreen);">Glimmerwing Faeries</h4>
+                    <p style="color: var(--color-earth-text);">Tiny sprites with iridescent wings, known to weave illusions from moonlight and dew. They delight in mischief but are fiercely protective of wildflowers.</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-semibold" style="color: var(--color-earth-mossgreen);">Mossback Groots</h4>
+                    <p style="color: var(--color-earth-text);">Ancient, slow-moving creatures resembling moss-covered boulders. They are the silent historians of the forest, holding memories of seasons long past.</p>
+                </li>
+                <li>
+                    <h4 class="text-xl font-semibold" style="color: var(--color-earth-mossgreen);">Whisperwisp Squirrels</h4>
+                    <p style="color: var(--color-earth-text);">Their fur shifts with the colors of the wind, and their chattering is said to carry forgotten secrets. Extremely elusive.</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Hidden Waterfalls Module (Initially Hidden) -->
+        <div id="hidden-waterfalls-module" class="forest-clearing-module hidden p-6 md:p-8 mb-10 rounded-lg shadow-xl">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--color-earth-deepgreen);">The Cascades of Whispering Falls</h2>
+            <p class="text-lg mb-4" style="color: var(--color-earth-text);">Deep within the heart of the Nook, where sunlight seldom touches the forest floor directly, lie the Hidden Waterfalls. Their waters are said to possess healing properties and reflect visions of what is yet to come.</p>
+            <p class="italic" style="color: var(--color-earth-mossgreen);">"Listen not with your ears, but with your heart, for the falls sing only to those who truly seek solace." - Forest Proverb</p>
+            <div class="mt-6 text-center">
+                <img src="https://via.placeholder.com/600x400/5C3D2E/F0E68C?text=Sketch+of+Hidden+Falls" alt="Artist's sketch of a hidden waterfall in a dense forest" class="rounded-lg shadow-md inline-block">
+            </div>
+        </div>
+    </main>
+
+    <footer id="forest-edge-footer" class="py-10 text-center text-sm relative z-10">
+        <!-- Footer ("Forest Edge") -->
+    </footer>
+
+    <script src="enchanted_scripts.js" defer></script>
+</body>
+</html>

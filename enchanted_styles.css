@@ -1,0 +1,183 @@
+/* enchanted_styles.css - Custom styles for the Enchanted Forest Nook website */
+
+:root {
+    /* Color Palette */
+    --color-earth-deepgreen: #2F4F2F; /* Dark Slate Green */
+    --color-earth-richbrown: #5C3D2E; /* Dark Sienna */
+    --color-earth-mossgreen: #6B8E23; /* Olive Drab */
+    --color-earth-text: #3A3A3A; /* Dark Gray for text */
+
+    --color-magic-gold: rgba(255, 215, 0, 0.8); /* Gold with alpha */
+    --color-magic-softgold: #F0E68C; /* Khaki */
+    --color-magic-etherealblue: rgba(173, 216, 230, 0.7); /* Light Blue with alpha */
+    --color-magic-amber: rgba(255, 191, 0, 0.85); /* Amber with alpha */
+
+    /* Font Families */
+    --font-family-body: 'Lora', 'Georgia', serif;
+    --font-family-headings: 'Cinzel Decorative', 'Papyrus', 'Georgia', serif; /* Whimsical but readable */
+    --font-family-script: 'Dancing Script', cursive;
+}
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@400;700&display=swap');
+
+body {
+    background-color: var(--color-earth-richbrown); /* Base background */
+    color: var(--color-earth-text);
+    font-family: var(--font-family-body);
+    line-height: 1.7;
+    margin: 0;
+    /* Potential for a subtle repeating background texture */
+    /* background-image: url('path/to/subtle-bark-texture.png'); */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-headings);
+    color: var(--color-earth-deepgreen); /* Default heading color */
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+}
+
+/* More specific heading styling if needed */
+h1 { font-size: 2.8em; /* Tailwind text-4xl/5xl equivalent */ }
+h2 { font-size: 2em;   /* Tailwind text-3xl equivalent */ }
+h3 { font-size: 1.5em; /* Tailwind text-xl/2xl equivalent */ }
+
+
+a {
+    color: var(--color-earth-mossgreen);
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-magic-gold);
+    text-shadow: 0 0 5px var(--color-magic-gold);
+}
+
+#forest-hero-section {
+    /* min-h-screen flex flex-col justify-center items-center relative overflow-hidden; /* From HTML */
+    background-image: url('https://via.placeholder.com/1920x1080/2F4F2F/F0E68C?text=Lush+Enchanted+Forest+Canopy'); /* Placeholder */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* For a simple depth effect on scroll */
+    text-align: center;
+}
+
+/* Optional: Overlay for atmosphere & readability */
+#forest-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at center,
+                                        rgba(0,0,0,0.1) 0%,
+                                        rgba(0,0,0,0.3) 60%,
+                                        rgba(47, 79, 47, 0.7) 100%); /* Darkens edges, subtle green tint */
+    z-index: 1;
+}
+
+/* Ensure content within hero is above the overlay */
+#forest-hero-section > div { /* Targeting the div wrapper for content */
+    position: relative;
+    z-index: 2;
+}
+
+#forest-hero-section h1 {
+    /* text-5xl md:text-6xl font-bold mb-6; /* From HTML */
+    /* color: var(--color-magic-softgold); /* From inline style */
+    /* text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* From inline style */
+    /* Font family is Cinzel Decorative from global h1 */
+}
+
+#forest-hero-section p:first-of-type { /* Targeting the tagline */
+    /* font-family: var(--font-family-script); /* From inline style */
+    /* color: var(--color-earth-mossgreen); /* From inline style */
+    /* font-size: 1.8rem; /* From inline style */
+}
+
+#forest-paths-nav-container {
+    /* sticky top-0 z-40; /* From HTML */
+    background-color: rgba(47, 79, 47, 0.8); /* var(--color-earth-deepgreen) with alpha */
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    border-bottom: 2px solid rgba(92, 61, 46, 0.6); /* var(--color-earth-richbrown) with alpha for a 'branch' like border */
+}
+
+#forest-paths-nav {
+    /* flex justify-center items-center py-3; /* From HTML */
+}
+
+.forest-path-link {
+    font-family: var(--font-family-headings); /* Cinzel Decorative for thematic links */
+    color: var(--color-magic-softgold); /* Soft gold for visibility on dark green */
+    /* text-lg; /* From HTML */
+    padding: 0.5rem 1rem; /* Tailwind px-4 py-2 equivalent */
+    margin: 0 0.75rem;   /* Tailwind mx-3 equivalent */
+    border-radius: 20px 5px 20px 5px; /* Organic, slightly irregular shape */
+    border: 1px solid rgba(240, 230, 140, 0.3); /* var(--color-magic-softgold) with low alpha */
+    background-color: rgba(92, 61, 46, 0.3); /* var(--color-earth-richbrown) with alpha, like bark */
+    transition: all 0.3s ease-in-out;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.forest-path-link:hover {
+    color: #FFFFFF; /* Bright white on hover */
+    background-color: rgba(107, 142, 35, 0.5); /* var(--color-earth-mossgreen) with alpha */
+    border-color: var(--color-magic-gold);
+    text-shadow: 0 0 8px var(--color-magic-gold);
+    transform: translateY(-2px) scale(1.03);
+}
+
+.forest-path-link.active { /* JavaScript will toggle this class */
+    color: #FFFFFF;
+    background-color: rgba(107, 142, 35, 0.7); /* More prominent moss green */
+    border-color: var(--color-magic-gold);
+    box-shadow: 0 0 12px var(--color-magic-gold), inset 0 0 5px rgba(255,215,0,0.3);
+    transform: translateY(-2px) scale(1.05);
+    text-shadow: 0 0 10px var(--color-magic-gold);
+}
+
+/* Firefly Container - already in HTML, no specific style needed unless for positioning */
+/* .firefly-container { position: relative; width: 100%; height: 100%; } /* If not using inset-0 on absolute */
+
+.firefly {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: var(--color-magic-amber, rgba(255, 191, 0, 0.85));
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px var(--color-magic-amber, rgba(255, 191, 0, 0.85));
+    opacity: 0; /* Start invisible, fade in with animation */
+
+    /* Animation: name duration timing-function delay iteration-count direction fill-mode */
+    animation: driftAndGlow 10s infinite ease-in-out;
+}
+
+/* Stagger animations for more natural look */
+.firefly:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.firefly:nth-child(2) { top: 50%; left: 80%; animation-delay: 2s; animation-duration: 9s; }
+.firefly:nth-child(3) { top: 70%; left: 30%; animation-delay: 4s; animation-duration: 11s; }
+.firefly:nth-child(4) { top: 30%; left: 90%; animation-delay: 6s; animation-duration: 8s; }
+.firefly:nth-child(5) { top: 85%; left: 50%; animation-delay: 8s; animation-duration: 13s; }
+.firefly:nth-child(6) { top: 10%; left: 40%; animation-delay: 1s; animation-duration: 10s; }
+
+
+@keyframes driftAndGlow {
+    0%, 100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(0.8);
+    }
+    25% {
+        opacity: 0.8;
+        transform: translate(15px, -10px) scale(1);
+    }
+    50% { /* Peak glow and position */
+        opacity: 1;
+        transform: translate(-10px, 10px) scale(1.2);
+        box-shadow: 0 0 10px 4px var(--color-magic-amber, rgba(255, 191, 0, 0.85));
+    }
+    75% {
+        opacity: 0.7;
+        transform: translate(10px, 5px) scale(0.9);
+    }
+}
