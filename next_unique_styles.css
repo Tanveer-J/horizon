@@ -1,0 +1,292 @@
+/* next_unique_styles.css - Custom styles for unique sections in next.html */
+
+/* Zen Garden Specific Variables (can be scoped if needed, global for now) */
+:root {
+    --zen-color-background: #F5F5DC; /* Beige - for overall section */
+    --zen-color-sand: #E0D6B3;
+    --zen-color-water: #A2C4C6;
+    --zen-color-stone-dark: #696969;
+    --zen-color-stone-light: #D3D3D3;
+    --zen-color-moss: #8FBC8F;
+    --zen-color-text-dark: #4A403A; /* Dark earthy brown for text */
+    --zen-color-text-quote: #5A5A5A;
+    --zen-font-headings: 'Noto Serif', 'Georgia', serif; /* Example */
+    --zen-font-body: 'Open Sans', 'Arial', sans-serif;   /* Example */
+
+    /* Data Sculpture Specific Variables */
+    --ds-color-background: #08080A; /* Near Black */
+    --ds-color-accent-primary: #00F0FF; /* Bright Cyan/Electric Blue */
+    --ds-color-accent-secondary: #F000FF; /* Vibrant Magenta */
+    --ds-color-text-light: #EFEFEF;
+    --ds-color-text-muted: #888899;
+    --ds-font-headings: 'Audiowide', 'Electrolize', 'Impact', sans-serif;
+    --ds-font-body: 'Roboto Mono', 'Courier New', monospace;
+
+    /* Storybook Specific Variables */
+    --sb-color-background: #F0F8FF; /* AliceBlue - for overall section */
+    --sb-color-sky: #ADD8E6;      /* Light Blue */
+    --sb-color-hills-far: #A8D8A8; /* Pale Green */
+    --sb-color-midground-tree: #228B22; /* Forest Green */
+    --sb-color-foreground-bush: #556B2F; /* Dark Olive Green */
+    --sb-color-character-main: #D2691E; /* Chocolate (for Sir Reginald) */
+    --sb-color-border: #704214;    /* Dark Brown (SaddleBrown) */
+    --sb-color-title: #A0522D;     /* Sienna */
+    --sb-color-text: #4A4A4A;
+    --sb-font-headings: 'Dancing Script', 'Comic Sans MS', cursive; /* Playful script */
+    --sb-font-body: 'Lora', 'Georgia', serif;
+    --sb-font-popup: 'Comic Sans MS', 'Patrick Hand', cursive; /* Even more playful for popups */
+
+    /* Horology Engine Specific Variables */
+    --he-color-background-wood: #6F4E37; /* Coffee (dark wood) */
+    --he-color-casing-edge: #4A2E20;  /* Darker wood for border */
+    --he-color-brass: #B8860B;       /* DarkGoldenrod */
+    --he-color-brass-text: #DAA520;  /* Goldenrod for text */
+    --he-color-copper: #B87333;
+    --he-color-steel: #777777;
+    --he-color-ivory: #FFFFF0;
+    --he-font-headings: 'IM Fell English SC', 'Times New Roman', serif;
+    --he-font-body: 'Times New Roman', serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Electrolize&family=Roboto+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Lora:wght@400;700&family=Comic+Sans+MS&family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+#zen-garden-contemplation {
+    background-color: var(--zen-color-background);
+    font-family: var(--zen-font-body);
+}
+#zen-garden-contemplation h2,
+#zen-garden-contemplation h3 {
+    font-family: var(--zen-font-headings);
+    color: var(--zen-color-text-dark);
+}
+.zen-area {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.sand-raking-placeholder { background-color: var(--zen-color-sand); border-color: var(--zen-color-stone-light); }
+.pond-placeholder { background-color: var(--zen-color-water); border-color: var(--zen-color-stone-dark); }
+.lanterns-placeholder { background-color: var(--zen-color-moss); border-color: var(--zen-color-stone-dark); }
+#sand-canvas { touch-action: none; }
+#pond-canvas { touch-action: none; }
+#lantern-path { }
+.stone-lantern { width: 80px; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+.lantern-top { width: 70px; height: 20px; background-color: var(--zen-color-stone-dark); clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); margin-bottom: -2px; }
+.lantern-light-area { width: 50px; height: 40px; background-color: var(--zen-color-stone-light); border: 2px solid var(--zen-color-stone-dark); transition: background-color 0.4s ease, box-shadow 0.4s ease; position: relative; }
+.stone-lantern.lit .lantern-light-area { background-color: var(--color-magic-amber, #FFBF00); box-shadow: 0 0 15px 5px var(--color-magic-amber, #FFBF00); }
+.lantern-base { width: 80px; height: 50px; background-color: var(--zen-color-stone-dark); clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%); }
+.lantern-quote { opacity: 0; transform: translateY(10px); transition: opacity 0.4s ease, transform 0.4s ease; margin-top: 10px; font-size: 0.8rem; color: var(--zen-color-text-quote); font-family: var(--zen-font-body); max-width: 150px; background-color: rgba(255, 255, 255, 0.8); padding: 5px; border-radius: 3px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.stone-lantern.lit .lantern-quote { opacity: 1; transform: translateY(0); }
+
+#data-sculpture-section { background-color: var(--ds-color-background); font-family: var(--ds-font-body); }
+#data-sculpture-section h2 { text-shadow: 0 0 10px var(--ds-color-accent-primary), 0 0 20px var(--ds-color-accent-primary); }
+#data-sculpture-section p { }
+#sculpture-container { background-color: rgba(10,10,15,0.3); box-shadow: 0 0 25px rgba(0, 240, 255, 0.1), 0 0 50px rgba(240, 0, 255, 0.1); }
+#data-sculpture-canvas { display: block; }
+#data-snippets-overlay { font-family: var(--ds-font-body); max-height: 100px; overflow-y: auto; display: flex; flex-direction: column-reverse; gap: 0.25rem; }
+.data-snippet { background-color: rgba(10, 10, 15, 0.5); padding: 0.25rem 0.5rem; border-radius: 3px; border-left: 2px solid var(--ds-color-accent-secondary); animation: fadeInAndOut 5s ease-in-out forwards; white-space: nowrap; }
+@keyframes fadeInAndOut { 0% { opacity: 0; transform: translateX(10px); } 10% { opacity: 1; transform: translateX(0); } 90% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(10px); } }
+
+#storybook-section { background-color: var(--sb-color-background); font-family: var(--sb-font-body); }
+#storybook-section h2 { text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+#storybook-scene { background-color: var(--sb-color-sky); overflow: hidden; border: 10px solid var(--sb-color-border, #704214); box-shadow: 0 0 0 5px var(--sb-color-background), 0 0 0 15px var(--sb-color-border), 5px 5px 15px 15px rgba(0,0,0,0.3); }
+.storybook-layer { }
+#sb-layer-sky { background-color: var(--sb-color-sky); }
+#sb-layer-far-hills::before, #sb-layer-far-hills::after { content: ''; position: absolute; width: 300px; height: 200px; background-color: var(--sb-color-hills-far, #A8D8A8); border-radius: 150px 150px 0 0; bottom: 0; filter: blur(1px); }
+#sb-layer-far-hills::before { left: 5%; width: 350px; height: 220px; background-color: #97C797; }
+#sb-layer-far-hills::after { left: 40%; width: 450px; height: 280px; z-index: 1; }
+#sb-layer-midground::before { content: ''; position: absolute; bottom: 0; left: 65%; width: 40px; height: 180px; background-color: var(--sb-color-border, #704214); border-radius: 10px 10px 0 0; }
+#sb-layer-midground::after { content: ''; position: absolute; bottom: 130px; left: 58%; width: 150px; height: 150px; background-color: var(--sb-color-midground-tree, #228B22); border-radius: 50%; box-shadow: inset 5px 5px 20px rgba(0,0,0,0.2); }
+#sir-reginald { position: absolute; bottom: 10%; left: 45%; width: 80px; height: 120px; background-color: var(--sb-color-character-main); border-radius: 40px 40px 10px 10px; border: 2px solid var(--sb-color-border); display: flex; align-items: flex-end; justify-content: center; }
+#sir-reginald::before { content: ''; position: absolute; top: -15px; width: 50px; height: 20px; background-color: #333; border-radius: 10px 10px 0 0; border-bottom: 5px solid #555; }
+#sir-reginald::after { content: ''; position: absolute; top: 25px; left: 15px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333; background-color: rgba(200,200,255,0.3); }
+#sb-layer-foreground::before { content: ''; position: absolute; bottom: 0; left: 10%; width: 120px; height: 80px; background-color: var(--sb-color-foreground-bush, #556B2F); border-radius: 60px 60px 30px 30px / 40px 40px 20px 20px; box-shadow: inset 3px 3px 10px rgba(0,0,0,0.2); }
+#sb-layer-foreground::after { content: ''; position: absolute; bottom: 0; right: 15%; width: 90px; height: 60px; background-color: #6A822F; border-radius: 45px 45px 20px 20px / 30px 30px 15px 15px; box-shadow: inset 3px 3px 10px rgba(0,0,0,0.2); }
+.sb-cloud { position: absolute; background-color: white; border-radius: 50%; opacity: 0.8; box-shadow: 2px 2px 5px rgba(0,0,0,0.1); filter: blur(0.5px); }
+.sb-cloud-1 { width: 100px; height: 60px; top: 10%; left: 15%; border-radius: 30px / 50px; }
+.sb-cloud-2 { width: 150px; height: 80px; top: 20%; left: 60%; border-radius: 40px / 75px; }
+.storybook-popup { position: absolute; bottom: 20%; left: 50%; transform: translateX(-50%); background-color: white; padding: 10px 15px; border-radius: 10px; border: 2px solid var(--sb-color-border); box-shadow: 3px 3px 8px rgba(0,0,0,0.2); font-family: var(--sb-font-popup); color: var(--sb-color-text); opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateY(10px) translateX(-50%); }
+.storybook-popup.visible { opacity: 1; transform: translateY(0) translateX(-50%); }
+#sir-reginald:hover { animation: wobble 0.8s ease-in-out; }
+@keyframes wobble { 0%, 100% { transform: rotate(0deg) scale(1); } 25% { transform: rotate(-3deg) scale(1.02); } 50% { transform: rotate(3deg) scale(1.02); } 75% { transform: rotate(-2deg) scale(1.01); } }
+
+/* Horology Engine Specific Variables */
+/* Appending to existing :root or creating if one doesn't exist at this level */
+/* Note: If :root is already defined, these variables should be merged into the existing one.
+   For simplicity here, assuming this block of CSS is appended, a new :root will effectively add/override.
+   A better approach in a real scenario would be to ensure only one :root block or merge them.
+   For this tool, appending should effectively make these variables available. */
+:root {
+    --he-color-background-wood: #6F4E37; /* Coffee (dark wood) */
+    --he-color-casing-edge: #4A2E20;  /* Darker wood for border */
+    --he-color-brass: #B8860B;       /* DarkGoldenrod */
+    --he-color-brass-text: #DAA520;  /* Goldenrod for text */
+    --he-color-copper: #B87333;
+    --he-color-steel: #777777;
+    --he-color-ivory: #FFFFF0;
+    --he-font-headings: 'IM Fell English SC', 'Times New Roman', serif;
+    --he-font-body: 'Times New Roman', serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap');
+
+#horology-engine-section {
+    background-color: var(--he-color-background-wood);
+    /* background-image: url('path/to/wood-texture.png'); /* Optional texture */
+    font-family: var(--he-font-body);
+    color: var(--he-color-ivory);
+}
+
+#horology-engine-section h2 {
+    /* font-family, color from inline style */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+#clockwork-mechanism {
+    /* border from inline style */
+    background-color: rgba(0,0,0,0.2); /* Dark overlay inside casing */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Basic Placeholder Styles for Clockwork Elements (will be detailed in Part 4.2) */
+.gear, .pendulum-arm, .pendulum-bob, .clock-face, .clock-hand, .info-plaque {
+    position: absolute; /* All elements positioned within #clockwork-mechanism */
+}
+
+.gear { background-color: var(--he-color-brass); border-radius: 50%; }
+.gear-large { width: 100px; height: 100px; }
+.gear-medium { width: 70px; height: 70px; }
+.gear-small { width: 40px; height: 40px; }
+/* Teeth will be added with pseudo-elements or clip-path in next step */
+
+.pendulum-arm { width: 8px; height: 150px; background-color: var(--he-color-brass); transform-origin: top center; }
+.pendulum-bob { width: 40px; height: 40px; background-color: var(--he-color-brass); border-radius: 50%; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+
+.clock-face {
+    width: 180px; height: 180px;
+    background-color: var(--he-color-ivory);
+    border-radius: 50%;
+    border: 3px solid var(--he-color-brass);
+    color: var(--he-color-background-wood); /* For numerals if added */
+    display: flex; justify-content: center; align-items: center;
+}
+.clock-hand { background-color: var(--he-color-background-wood); transform-origin: bottom center; }
+.hour-hand { width: 6px; height: 50px; position:absolute; top: calc(50% - 50px); left: calc(50% - 3px); }
+.minute-hand { width: 4px; height: 70px; position:absolute; top: calc(50% - 70px); left: calc(50% - 2px); }
+.second-hand { width: 2px; height: 75px; background-color: var(--he-color-copper); position:absolute; top: calc(50% - 75px); left: calc(50% - 1px); }
+
+
+.info-plaque {
+    background-color: var(--he-color-brass);
+    color: var(--he-color-background-wood);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border: 1px solid var(--he-color-casing-edge);
+}
+.info-plaque-details {
+    position: absolute;
+    bottom: 15%; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--he-color-ivory);
+    color: var(--he-color-text-dark); /* Use a readable dark color */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 80%;
+    max-width: 300px;
+    z-index: 10; /* Above other elements */
+    /* Initially hidden via Tailwind 'hidden' class */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(10px) translateX(-50%);
+}
+.info-plaque-details.visible {
+    opacity: 1;
+    transform: translateY(0) translateX(-50%);
+}
+
+.info-plaque:hover {
+    background-color: var(--he-color-copper, #B87333);
+    box-shadow: 0 0 5px var(--he-color-copper, #B87333);
+    color: var(--he-color-ivory, #FFFFF0);
+}
+
+/* Gear Styling with Teeth */
+.gear {
+    /* ... existing position, bg-color, border-radius ... */
+    background-image: radial-gradient(circle at 30% 30%,
+                                      var(--he-color-brass, #B8860B) 0%,
+                                      var(--he-color-copper, #B87333) 50%,
+                                      var(--he-color-brass, #B8860B) 100%);
+    box-shadow: 0 0 0 4px var(--he-color-brass), /* Outer ring for teeth base */
+                0 0 0 8px var(--he-color-casing-edge), /* Gap */
+                2px 2px 5px rgba(0,0,0,0.3),
+                inset 1px 1px 3px rgba(255,255,255,0.2);
+    position: relative; /* For pseudo-elements (teeth) if needed, but using shadow here */
+}
+
+/* Pendulum Animation */
+.pendulum-arm {
+    /* ... existing styles ... */
+    animation: swingPendulum 3s ease-in-out infinite;
+}
+@keyframes swingPendulum {
+    0% { transform: rotate(-20deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(-20deg); }
+}
+.pendulum-bob {
+    /* ... existing styles ... */
+    background-image: radial-gradient(circle at 30% 30%, var(--he-color-brass) 0%, var(--he-color-copper) 70%);
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.4);
+}
+
+/* Clock Face Numerals & Styling */
+.clock-face {
+    /* ... existing styles ... */
+    background-image: linear-gradient(to bottom, var(--he-color-ivory) 80%, #E0E0D0 100%); /* Aged paper */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2), 0 0 5px rgba(0,0,0,0.3);
+}
+.clock-face::before { /* 12 */
+    content: 'XII'; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 1rem; font-family: var(--he-font-headings); color: var(--he-color-background-wood);
+}
+.clock-face::after { /* 6 */
+    content: 'VI'; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 1rem; font-family: var(--he-font-headings); color: var(--he-color-background-wood);
+}
+.clock-ticks::before { /* 3 */
+    content: 'III'; position: absolute; top: 50%; right: 10px; transform: translateY(-50%); font-size: 1rem; font-family: var(--he-font-headings); color: var(--he-color-background-wood);
+}
+.clock-ticks::after { /* 9 */
+    content: 'IX'; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 1rem; font-family: var(--he-font-headings); color: var(--he-color-background-wood);
+}
+
+/* Clock Hand Animations (Illustrative Speeds) */
+.hour-hand { animation: rotateHand 43200s linear infinite; /* 12 hours */ }
+.minute-hand { animation: rotateHand 3600s linear infinite; /* 60 minutes */ }
+.second-hand { animation: rotateHand 60s linear infinite; /* 60 seconds */ }
+
+@keyframes rotateHand {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Gear Rotation Animations (Different speeds and directions) */
+.gear.rotate-slow-cw { animation: rotateGearCW 20s linear infinite; }
+.gear.rotate-medium-ccw { animation: rotateGearCCW 10s linear infinite; }
+.gear.rotate-fast-cw { animation: rotateGearCW 5s linear infinite; }
+
+@keyframes rotateGearCW { /* Clockwise */
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes rotateGearCCW { /* Counter-Clockwise */
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
