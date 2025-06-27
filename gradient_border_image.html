@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri-color Gradient Border Image</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .spin-slow { /* Original spin, will be reviewed in step 2 if needed */
+            animation: spin 3s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Added CSS for spin-gradient-ring */
+        @keyframes colorCycle { /* Not directly used by .spin-gradient-ring::before but included as provided */
+          0% { border-color: #ec4899; }
+          25% { border-color: #8b5cf6; }
+          50% { border-color: #22d3ee; }
+          75% { border-color: #10b981; }
+          100% { border-color: #ec4899; }
+        }
+        @keyframes rotate {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        .spin-gradient-ring::before {
+          content: "";
+          position: absolute;
+          inset: -6px; /* This creates the border thickness */
+          border-radius: 9999px; /* Ensures it's circular */
+          background: conic-gradient(from 0deg, #ec4899, #8b5cf6, #22d3ee, #10b981, #ec4899);
+          animation: rotate 8s linear infinite;
+          z-index: -1; /* Places the pseudo-element behind the parent's content (the image) */
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+      <!-- Circular Image Animation -->
+      <div class="relative w-80 h-80 flex-shrink-0">
+        <div
+          class="spin-gradient-ring relative w-full h-full rounded-full shadow-xl"
+          style="/* The pseudo-element uses inset -6px, so the container for the image needs to allow that. */
+                 /* The w-full h-full makes it take the parent's 80x80. */
+                 /* The image inside will be w-full, h-full of this div. */
+                 /* The border will appear outside this div's dimensions due to negative inset. */"
+        >
+          <img
+            src="../Images%202/2306014-black_06.webp"
+            alt="Urfi"
+            fetchpriority="high"
+            class="w-full h-full object-cover rounded-full"
+          />
+        </div>
+      </div>
+</body>
+</html>
